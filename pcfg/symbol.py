@@ -6,9 +6,9 @@ class Symbol:
 
     def __str__(self):
         return self._symbol_code
-    
+
     def __repr__(self):
-        return self._symbol_code
+        return "{0}({1})"
 
     def __eq__(self, other):
         return self._symbol_code == other._symbol_code
@@ -32,4 +32,3 @@ class Terminal(Symbol):
             else:
                 self.term_code = term_code
             self._symbol_code = self.term_code #For Now
-

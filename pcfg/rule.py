@@ -1,42 +1,26 @@
-from .symbol import Terminal, Symbol, Variable
+from .symbol import Symbol
+
 
 class Rule:
     """A transformation (rewrite) rule for any CFG"""
 
-    def __init__(self, source, targets):
+    def __init__(self, source, targets, proba=None):
         """
         Source should be a Variable
         targets should be a tuple of 0 or more Symbols
         """
 
-        self._source = source
-        self._targets = targets
-        
-        self.check_Rule()
+        if not isinstance(source, Symbol):
 
-    def check_Rule(self):
-        assert type(self._source) is Variable, "The source must be of type Variable."
-        for target in self._targets:
-            assert isinstance(target,  Symbol),  "All targets must be instances of type Symbol."
-            
-    def source(self):
-        """returns source symbol (Variable symbol being transformed by the grammar.)"""
-        return self._source
+        self.source = source
+        self.targets = targets
+        self.proba = float(proba) if proba is not None else None
+
+        self.check_Rule()
 
     def arity(self):
         """Return number of target symbols."""
-        return len(self._targets)
-
-    def targets(self):
-        return self._targets
-    
-    def target(self, i):
-        """ Return tuple of target symbols """
-        return self._targets[i]
-
-    def set_target(self, i, new_target):
-        self._targets[i]= new_target
-    
+        return len(self.targets)
 
     def substitute(self, sub_dict):
         """
@@ -57,15 +41,15 @@ class Rule:
             new_targets = new_targets + (new_target,)
         new_rule = Rule(new_source, new_targets)
         return new_rule
-        
+
     def substitute_many(self, var, new_targs):
         """
-        Perhaps currently poorly named, this method allows Not for more than 
-        one *kind* of substitution 
-        (as does the method substitute(), but rather for more than one symbol to be substituted 
+        Perhaps currently poorly named, this method allows Not for more than
+        one *kind* of substitution
+        (as does the method substitute(), but rather for more than one symbol to be substituted
         in the place of one symbol (which substitute() does not currently allow).
-        The resulting Rule may therefore be of a different arity than that of the 
-        instance on which this 
+        The resulting Rule may therefore be of a different arity than that of the
+        instance on which this
         method is called.
         """
         assert type(new_targs) is tuple
@@ -90,3 +74,7 @@ class Rule:
 
     def __repr__(self):
         return self._source.__str__() + " " + self._targets.__str__()
+
+    def to_json(self):
+        return {'source': self.source, 'targets': self.targets,
+                'proba': self.proba}
