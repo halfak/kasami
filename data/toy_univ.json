@@ -1,0 +1,14 @@
+{"source": "S", "produces": {"symbols": ["NP", "VP"]}, "proba": 1.0}
+{"source": "VP", "produces": {"symbols": ["VT", "NP"]}, "proba": 0.8333333333333334}
+{"source": "VP", "produces": {"symbols": ["VI", "ADV"]}, "proba": 0.16666666666666666}
+{"source": "NP", "produces": {"symbols": ["DET", "NN"]}, "proba": 0.45454545454545453}
+{"source": "NN", "produces": {"literal": "cat"}, "proba": 0.6}
+{"source": "NP", "produces": {"literal": "Fluffy"}, "proba": 0.2727272727272727}
+{"source": "VT", "produces": {"literal": "loves"}, "proba": 0.4}
+{"source": "ADV", "produces": {"literal": "soundly"}, "proba": 1.0}
+{"source": "NP", "produces": {"literal": "Fido"}, "proba": 0.2727272727272727}
+{"source": "VT", "produces": {"literal": "is"}, "proba": 0.6}
+{"source": "VI", "produces": {"literal": "sleeps"}, "proba": 1.0}
+{"source": "DET", "produces": {"literal": "a"}, "proba": 0.8}
+{"source": "DET", "produces": {"literal": "Every"}, "proba": 0.2}
+{"source": "NN", "produces": {"literal": "dog"}, "proba": 0.4}

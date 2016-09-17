@@ -4,3 +4,46 @@
 (S (NP Fluffy) (VP (VT is) (NP (DET a) (NN cat))))
 (S (NP Fido) (VP (VT loves) (NP Fluffy)))
 (S (NP Fluffy) (VP (VI sleeps) (ADV soundly)))
+
+from spacy.en import English
+from spacy import parts_of_speech as pos
+parse = English()
+doc = parse("Every cat loves a dog")
+print("\n".join(
+  "\t".join(str(v) for v in
+            (str(t), t.left_edge.i, t.right_edge.i,
+             doc.vocab.strings[t.tag], doc.vocab.strings[t.dep])
+  )
+  for t in doc
+))
+
+from collections import namedtuple
+
+Production = namedtuple("Production", ["source", "produces"])
+
+class Production:
+
+  def __init__(self, source, produces):
+    self.source = source
+    self.produces = produces
+
+  def __str__(self):
+    return "({0} {1})".format(self.source, " ".join(map(str, self.produces)))
+
+def treeify(doc):
+  for t in doc:
+    if t.head is t:
+      root = t
+  return treeify_at(root, doc)
+
+def treeify_at(token, doc):
+  if token.left_edge == token.right_edge:
+    return Production(doc.vocab.strings[token.tag], [str(token)])
+  else:
+    sorted_i_trees = \
+      sorted([(child.i, treeify_at(child, doc)) for child in token.children] +
+             [(token.i, Production(doc.vocab.strings[token.tag], [str(token)]))])
+    return Production(doc.vocab.strings[token.dep],
+                      [tree for _, tree in sorted_i_trees])
+
+treeify(doc)

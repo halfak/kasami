@@ -1,0 +1,77 @@
+{"source": "S", "produces": {
+  "symbols": [
+    {"source": "NP", "produces": {
+      "symbols": [
+        {"source": "DET", "produces": {"literal": "Every"}},
+        {"source": "NN", "produces": {"literal": "cat"}}
+      ]}
+    },
+    {"source": "VP", "produces": {
+      "symbols": [
+        {"source": "VT", "produces": {"literal": "Every"}},
+        {"source": "NP", "produces": {"symbols": [
+          {"source": "DET", "produces": {"literal": "a"}},
+          {"source": "NN", "produces": {"literal": "dog"}}
+        ]}}
+      ]}
+    }
+  ]}
+}
+{"source": "S", "produces": {
+  "symbols": [
+    {"source": "NP", "produces": {"literal": "Fido"}},
+    {"source": "VP", "produces": {
+      "symbols": [
+        {"source": "VT", "produces": {"literal": "is"}},
+        {"source": "DET", "produces": {"literal": "a"}},
+        {"source": "NN", "produces": {"literal": "cat"}}
+      ]}
+    }
+  ]}
+}
+{"source": "S", "produces": {
+  "symbols": [
+    {"source": "NP", "produces": {"literal": "Fido"}},
+    {"source": "VP", "produces": {
+      "symbols": [
+        {"source": "VT", "produces": {"literal": "is"}},
+        {"source": "DET", "produces": {"literal": "a"}},
+        {"source": "NN", "produces": {"literal": "dog"}}
+      ]}
+    }
+  ]}
+}
+{"source": "S", "produces": {
+  "symbols": [
+    {"source": "NP", "produces": {"literal": "Fluffy"}},
+    {"source": "VP", "produces": {
+      "symbols": [
+        {"source": "VT", "produces": {"literal": "is"}},
+        {"source": "DET", "produces": {"literal": "a"}},
+        {"source": "NN", "produces": {"literal": "cat"}}
+      ]}
+    }
+  ]}
+}
+{"source": "S", "produces": {
+  "symbols": [
+    {"source": "NP", "produces": {"literal": "Fido"}},
+    {"source": "VP", "produces": {
+      "symbols": [
+        {"source": "VT", "produces": {"literal": "loves"}},
+        {"source": "NP", "produces": {"literal": "Fluffy"}}
+      ]}
+    }
+  ]}
+}
+{"source": "S", "produces": {
+  "symbols": [
+    {"source": "NP", "produces": {"literal": "Fluffy"}},
+    {"source": "VP", "produces": {
+      "symbols": [
+        {"source": "VI", "produces": {"literal": "sleeps"}},
+        {"source": "ADV", "produces": {"literal": "soundly"}}
+      ]}
+    }
+  ]}
+}
