@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
-from ..nodes import SymbolNode, TerminalNode, parse
+from ..nodes import SymbolNode, TerminalNode
 
 
 def test_nodes():
-    tree = SymbolNode("S", (
+    my_tree = SymbolNode("S", (
         SymbolNode("NP", (
             TerminalNode("DET", "Every"),
             TerminalNode("NN", "cat")
@@ -22,7 +22,4 @@ def test_nodes():
          "(NP (DET 'Every') (NN 'cat')) " +
          "(VP (VBZ 'loves') (NP (DET 'a') (NN 'dog')))" +
          ")")
-    eq_(str(tree), expected_line)
-
-    eq_(parse(expected_line), tree)
-    eq_(parse(str(tree)), tree)
+    eq_(str(my_tree), expected_line)

@@ -1,4 +1,5 @@
 class Production:
+    __slots__ = ['source', 'produces']
 
     def __init__(self, source, produces):
         self.source = str(source)
@@ -11,6 +12,9 @@ class Production:
     def __eq__(self, other):
         return self.source == other.source and \
                self.produces == other.produces
+
+    def __hash__(self):
+        return hash((self.source, self.produces))
 
 
 class TerminalProduction(Production):
