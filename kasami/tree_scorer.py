@@ -1,8 +1,7 @@
 import logging
 import pickle
 from collections import defaultdict
-
-from .functions import sum_log_product
+from math import log
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +13,7 @@ class TreeScorer:
     `prod_freq` is again used to create the `tree`s provided to `score()`
 
     :Parameters:
-        prod_freq : `dict` ( :class:`pcfg.Production` --> `int` )
+        prod_freq : `dict` ( :class:`kasami.Production` --> `int` )
             A mapping between productions and frequency of their occurances
     """
 
@@ -38,15 +37,16 @@ class TreeScorer:
                 The top node of a parse tree for a sentence.
 
         :Returns:
-            `float` : A probability of seeing the parse tree
+            `float` : A log(likelihood) of seeing the parse tree
         """
-        probas = [self.prod_freq.get(prod, 1) /
-                  self.source_freq.get(prod.source, 2)
+        probas = [self.prod_freq.get(prod, 0.5) /
+                  self.source_freq.get(prod.source, 1)
                   for prod in tree]
         logger.debug("Scoring {0}:".format(tree))
         for prod, proba in zip(tree, probas):
-            logger.debug("\t- {0} {1}".format(prod, proba))
-        return sum_log_product(probas)
+            logger.debug("\t- {0} {1}({2})"
+                         .format(prod, round(proba, 3), round(log(proba), 3)))
+        return sum(log(proba) for proba in probas)
 
     @classmethod
     def from_tree_bank(cls, trees):

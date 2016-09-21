@@ -15,7 +15,6 @@ text.
 >>>
 >>> # Loading WSJ-PTB3 treebank into bllip's RerankingParser
 ... bllip_rrp = RerankingParser.fetch_and_load('WSJ-PTB3')
-
 >>> bllip_parse = lambda s: bllip.normalize_tree(bllip_rrp.parse(s)[0].ptb_parse)
 >>>
 >>> tree = bllip_parse("I am a little teapot")
@@ -65,15 +64,16 @@ text.
 >>> teapot_grammar = TreeScorer.from_tree_bank(bllip_parse(s) for s in sentences)
 >>>
 >>> teapot_grammar.score(bllip_parse("Here is a little teapot"))
-8.333333333333338e-05
+-9.392661928770137
 >>> teapot_grammar.score(bllip_parse("It is my handle"))
-6.751543209876548e-05
+-10.296301543090733
 >>> teapot_grammar.score(bllip_parse("I am a spout"))
-3.038194444444445e-05
+-10.40166205874856
 >>> teapot_grammar.score(bllip_parse("Your teapot is gay"))
-1.8754286694101494e-05
+-12.96352974967269
 >>> teapot_grammar.score(bllip_parse("Your mom's teapot is asldasnldansldal"))
-1.1721429183813438e-07
+-19.424997926026403
+
 ```
 
 # Author
