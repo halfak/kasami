@@ -14,10 +14,10 @@ def test_pcfg():
     foo_ts = TreeScorer.from_tree_bank(trees)
 
     t = tree.parse("(S (NN 'foo') (VP (DET 'a') (VBZ 'bar')))")
-    eq_(foo_ts.score(t), 1/3 * 1 * 1 * 1/3)
+    eq_(round(foo_ts.score(t), 3), round(1/3 * 1 * 1 * 1/3, 3))
 
     t = tree.parse("(S (NN 'bar') (VP (DET 'a') (VBZ 'bar')))")
-    eq_(foo_ts.score(t), 1/3 * 1/3 * 1 * 1/3)
+    eq_(round(foo_ts.score(t), 3), round(1/3 * 1/3 * 1 * 1/3, 3))
 
     t = tree.parse("(S (NN 'bar') (VP (DET 'every') (VBZ 'foo')))")
-    eq_(foo_ts.score(t), 1/3 * 1/3 * 1 * 1/3)
+    eq_(round(foo_ts.score(t), 3), round(1/3 * 1/3 * 1 * 1/3, 3))

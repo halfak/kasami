@@ -15,7 +15,7 @@ class TerminalNode(Node, TerminalProduction):
         return "\t" * depth + str(self)
 
     def __iter__(self):
-        yield TerminalProduction(self.source, self.produces)
+        yield self
 
 
 class SymbolNode(Node, SymbolProduction):
@@ -33,8 +33,7 @@ class SymbolNode(Node, SymbolProduction):
             self.__class__.__name__, repr(self.source), repr(self.produces))
 
     def __iter__(self):
-        yield SymbolProduction(self.source,
-                               tuple(t.source for t in self.produces))
+        yield self
 
         for target in self.produces:
             yield from iter(target)
