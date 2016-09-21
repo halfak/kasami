@@ -34,7 +34,7 @@ class TreeScorer:
         scoring.
 
         :Parameters:
-            tree : :class:`pcfg.Node`
+            tree : :class:`kasami.Node`
                 The top node of a parse tree for a sentence.
 
         :Returns:
