@@ -78,3 +78,5 @@ text.
 
 # Author
 * Aaron Halfaker -- https://github.com/halfak
+
+... and substantially informed by https://github.com/aetilley
