@@ -28,6 +28,7 @@ setup(
     license="MIT",
     url="https://github.com/halfak/kasami",
     packages=find_packages(),
+    include_package_data=True,
     long_description=read('README.md'),
     install_requires=requirements('requirements.txt'),
     classifiers=[
