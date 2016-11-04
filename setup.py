@@ -1,4 +1,5 @@
 import os
+from configparser import ConfigParser
 
 from setuptools import find_packages, setup
 
@@ -11,15 +12,21 @@ def requirements(fname):
     return [line.strip()
             for line in open(os.path.join(os.path.dirname(__file__), fname))]
 
+def get_version(fname):
+    cp = ConfigParser()
+    cp.read(os.path.join(os.path.dirname(__file__), fname))
+    return cp.get("VERSION", "version")
+
+
 setup(
     name="kasami",
-    version="0.0.1",  # change in pcfg/__init__.py
+    version=get_version("kasami/vars.cfg"),
     author="Aaron Halfaker",
     author_email="ahalfaker@wikimedia.org",
     description=("A set of utilities for training probabilistic " +
                  "context-free grammars and scoring new sentences with them."),
     license="MIT",
-    url="https://github.com/halfak/pcfg",
+    url="https://github.com/halfak/kasami",
     packages=find_packages(),
     long_description=read('README.md'),
     install_requires=requirements('requirements.txt'),
