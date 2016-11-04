@@ -17,12 +17,13 @@ def test_pcfg():
 
     t = tree.parse("(S (NN 'foo') (VP (DET 'a') (VBZ 'bar')))")
     eq_(round(foo_ts.score(t), 3),
-        round(log(1/3) + log(1) + log(1) + log(1/3), 3))
+        round(log(1/3, 10) + log(1, 10) + log(1, 10) + log(1/3, 10), 3))
 
     t = tree.parse("(S (NN 'bar') (VP (DET 'a') (VBZ 'bar')))")
     eq_(round(foo_ts.score(t), 3),
-        round(log(1/3) + log(0.5/3) + log(1) + log(1/3), 3))
+        round(log(1/3, 10) + log(0.5/3, 10) + log(1, 10) + log(1/3, 10), 3))
 
     t = tree.parse("(S (NN 'bar') (VP (DET 'every') (VBZ 'foo')))")
     eq_(round(foo_ts.score(t), 3),
-        round(log(1/3) + log(0.5/3) + log(0.5/1) + log(0.5/3), 3))
+        round(log(1/3, 10) + log(0.5/3, 10) +
+              log(0.5/1, 10) + log(0.5/3, 10), 3))

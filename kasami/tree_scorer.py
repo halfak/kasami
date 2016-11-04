@@ -44,9 +44,10 @@ class TreeScorer:
                   for prod in tree]
         logger.debug("Scoring {0}:".format(tree))
         for prod, proba in zip(tree, probas):
-            logger.debug("\t- {0} {1}({2})"
-                         .format(prod, round(proba, 3), round(log(proba), 3)))
-        return sum(log(proba) for proba in probas)
+            logger.debug(
+                "\t- {0} {1}({2})"
+                .format(prod, round(proba, 3), round(log(proba, 10), 3)))
+        return sum(log(proba, 10) for proba in probas)
 
     @classmethod
     def from_tree_bank(cls, trees):
