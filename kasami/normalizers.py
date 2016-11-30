@@ -12,17 +12,19 @@ def bllip(bllip_tree):
 
 
 def spacy(spacy_doc):
-    root = None
-    for t in spacy_doc:
-        if t.head is t:
-            root = t
-    return _spacy_treeify_at(root, spacy_doc)
+    roots = [t for t in spacy_doc if t.head is t]
+
+    if len(roots) == 0:
+        return TerminalNode("EMPTY", "EMPTY")
+    elif len(roots) == 1:
+        return _spacy_treeify_at(roots[0], spacy_doc)
+    else:
+        return SymbolNode("SENTENCES", tuple(_spacy_treeify_at(root, spacy_doc)
+                                             for root in roots))
 
 
 def _spacy_treeify_at(token, spacy_doc):
-    if token is None:
-        return TerminalNode("EMPTY", "EMPTY")
-    elif token.left_edge == token.right_edge:
+    if token.left_edge == token.right_edge:
         return TerminalNode(spacy_doc.vocab.strings[token.tag], str(token))
     else:
         root = TerminalNode(spacy_doc.vocab.strings[token.tag], str(token))
