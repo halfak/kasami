@@ -1,5 +1,5 @@
 __name__ = "kasami"
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 __author__ = "Aaron Halfaker"
 __author_email__ = "aaron.halfaker@gmail.com"
 __description__ = "A set of utilities for training probabilistic " + \
