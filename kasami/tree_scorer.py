@@ -47,10 +47,14 @@ class TreeScorer:
             logger.debug(
                 "\t- {0} {1}({2})"
                 .format(prod, round(proba, 3), round(log(proba, 10), 3)))
-        return sum(log(proba, 10) for proba in probas)
+        log_proba = sum(log(proba, 10) for proba in probas)
+        return {
+            'log_proba': log_proba,
+            'productions': len(probas)
+        }
 
     @classmethod
-    def from_tree_bank(cls, trees):
+    def from_tree_bank(cls, trees, min_freq=None):
         """
         Constructs a PCFG from a tree bank.
 
@@ -62,6 +66,10 @@ class TreeScorer:
         for tree in trees:
             for prod in tree:
                 prod_freqs[prod] += 1
+
+        if min_freq is not None:
+            prod_freqs = {prod: freq for prod, freq in prod_freqs.items()
+                          if freq >= min_freq}
 
         return cls(prod_freqs)
 
